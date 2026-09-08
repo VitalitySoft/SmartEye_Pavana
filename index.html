@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartEye eQMS | Next-Gen eQMS for Medical Devices & SaMD Compliance</title>
+  <meta name="description" content="Next-Gen eQMS for Medical Device and SaMD innovators. Real-time traceability, automated ISO 14971 risk, IEC 62304 verification, and 21 CFR Part 11 e-signatures." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            cyber: {
+              cyan: '#06B6D4',
+              cyanBright: '#22D3EE',
+              emerald: '#10B981',
+              emeraldBright: '#34D399',
+              dark: '#030712',
+              card: 'rgba(15, 23, 42, 0.7)',
+              border: 'rgba(255, 255, 255, 0.08)'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Cinematic CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-cyan-500 selection:text-black">
+
+  <!-- MOTION PICTURE BACKGROUND & PARTICLE CANVAS -->
+  <div class="motion-bg-container">
+    <video class="motion-video" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1920&q=80">
+      <!-- High-tech abstract medical data / laboratory molecular motion video -->
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-with-graphs-and-data-31911-large.mp4" type="video/mp4" />
+    </video>
+    <div class="motion-overlay-gradient"></div>
+    <canvas id="particleCanvas"></canvas>
+  </div>
+
+  <!-- TOP LIVE COMPLIANCE BAR -->
+  <div class="relative z-30 bg-slate-950/80 backdrop-blur-md border-b border-white/5 text-[11px] py-2 px-4 font-mono text-slate-400">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div class="flex items-center gap-2.5">
+        <span class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-800/80">
+          <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 radar-dot"></span>
+          SMARTEYE CLOUD OS v4.8
+        </span>
+        <span>Continuous Audit-Ready Architecture • FDA QMSR • EU MDR • ISO 13485:2016</span>
+      </div>
+      <div class="flex items-center gap-4 text-slate-400">
+        <span class="flex items-center gap-1 text-slate-300">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i> ISO 27001 & 9001 BSI Certified
+        </span>
+        <span>•</span>
+        <a href="mailto:info@scube-technologies.com" class="hover:text-cyan-400 transition-colors flex items-center gap-1">
+          <i data-lucide="mail" class="w-3.5 h-3.5"></i> info@scube-technologies.com
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- STICKY FROSTED NAVBAR -->
+  <header class="sticky top-0 z-40 bg-slate-950/70 backdrop-blur-2xl border-b border-white/10 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-600 to-emerald-500 flex items-center justify-center text-slate-950 shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+            <circle cx="12" cy="12" r="3" fill="#030712" />
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xl font-black tracking-tight text-white">SmartEye</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800 font-bold">NEXT-GEN</span>
+          </div>
+          <span class="text-[10px] text-slate-400 block -mt-0.5 font-medium">by S-Cube Technologies Limited</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-300">
+        <a href="#bento" class="hover:text-cyan-400 transition-colors">Capabilities</a>
+        <a href="#trace-matrix" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5 text-cyan-300">
+          <i data-lucide="git-merge" class="w-4 h-4 text-cyan-400"></i> Live Trace Matrix
+        </a>
+        <a href="#standards" class="hover:text-cyan-400 transition-colors">Standards & FDA</a>
+        <a href="#comparison" class="hover:text-cyan-400 transition-colors">Competitors</a>
+        <a href="#templates" class="hover:text-cyan-400 transition-colors">Templates</a>
+        <a href="#roi" class="hover:text-cyan-400 transition-colors">ROI Model</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="hidden sm:flex items-center gap-3">
+        <button class="open-demo-modal btn-cinema-glow px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider flex items-center gap-2">
+          <span>Book a Demo</span>
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <button id="mobileMenuBtn" class="lg:hidden p-2 text-slate-300 hover:text-white">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-slate-950/95 border-b border-white/10 px-6 py-5 space-y-4">
+      <a href="#bento" class="mobile-nav-link block text-sm font-bold text-slate-200">Capabilities</a>
+      <a href="#trace-matrix" class="mobile-nav-link block text-sm font-bold text-cyan-400">Live Trace Matrix</a>
+      <a href="#standards" class="mobile-nav-link block text-sm font-bold text-slate-200">Standards & FDA</a>
+      <a href="#comparison" class="mobile-nav-link block text-sm font-bold text-slate-200">Competitor Benchmark</a>
+      <a href="#templates" class="mobile-nav-link block text-sm font-bold text-slate-200">Turnkey Templates</a>
+      <a href="#roi" class="mobile-nav-link block text-sm font-bold text-slate-200">ROI Calculator</a>
+      <div class="pt-2">
+        <button class="open-demo-modal w-full btn-cinema-glow py-3 rounded-full text-xs font-black uppercase">
+          Schedule Platform Walkthrough
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. CINEMATIC HERO SECTION WITH MOTION OVERLAY -->
+  <section class="relative z-10 pt-16 pb-24 lg:pt-24 lg:pb-36 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-4xl mx-auto space-y-7">
+        <!-- Live Tag Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-cyan-500/30 text-xs font-mono text-cyan-300 shadow-xl shadow-cyan-500/10 backdrop-blur-xl">
+          <span class="w-2 h-2 rounded-full bg-cyan-400 radar-dot"></span>
+          <span>THE AUTONOMOUS MEDICAL eQMS PLATFORM</span>
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.08] text-white">
+          Eliminate Audit Friction.<br />
+          <span class="text-gradient-accent">Code, Verify & Release</span> with Certainty.
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-base sm:text-xl text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed">
+          SmartEye by <strong>S-Cube Technologies</strong> unites design controls, ISO 14971 risk analysis, IEC 62304 SaMD lifecycles, and 21 CFR Part 11 document controls into one continuous digital pipeline.
+        </p>
+
+        <!-- CTA Cluster -->
+        <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
+          <button class="open-demo-modal btn-cinema-glow px-8 py-4 rounded-full text-sm font-black uppercase tracking-wider flex items-center gap-2" data-interest="Executive Cinematic Demo">
+            <span>Schedule 1-on-1 Walkthrough</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 stroke-[2.5]"></i>
+          </button>
+          <a href="#trace-matrix" class="btn-cinema-outline px-8 py-4 rounded-full text-sm font-bold flex items-center gap-2">
+            <i data-lucide="play" class="w-4 h-4 text-cyan-400"></i>
+            <span>Experience Live Trace Matrix</span>
+          </a>
+        </div>
+
+        <!-- Metrics Strip -->
+        <div class="pt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto text-left">
+          <div class="cyber-card p-4">
+            <div class="text-2xl sm:text-3xl font-black text-cyan-400 font-mono">4x</div>
+            <div class="text-xs text-slate-400 mt-1 font-medium">Faster External Audits</div>
+          </div>
+          <div class="cyber-card p-4">
+            <div class="text-2xl sm:text-3xl font-black text-emerald-400 font-mono">-60%</div>
+            <div class="text-xs text-slate-400 mt-1 font-medium">Quality Admin Burden</div>
+          </div>
+          <div class="cyber-card p-4">
+            <div class="text-2xl sm:text-3xl font-black text-white font-mono">2-4 Wks</div>
+            <div class="text-xs text-slate-400 mt-1 font-medium">Rapid Time-to-Value</div>
+          </div>
+          <div class="cyber-card p-4">
+            <div class="text-2xl sm:text-3xl font-black text-purple-400 font-mono">100%</div>
+            <div class="text-xs text-slate-400 mt-1 font-medium">Pre-Validated CSV Pack</div>
+          </div>
+        </div>
+
+        <!-- High-Fidelity Cleanroom & Platform Showcase Image -->
+        <div class="mt-12 max-w-5xl mx-auto rounded-2xl overflow-hidden border border-white/15 shadow-2xl shadow-cyan-500/10 relative group">
+          <img src="assets/smarteye-showcase.jpg" alt="SmartEye eQMS Software on Cleanroom Workstation" class="w-full h-auto object-cover transform group-hover:scale-[1.01] transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60 pointer-events-none"></div>
+          <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-slate-950/80 backdrop-blur-xl border border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+            <div class="flex items-center gap-2.5 text-cyan-300">
+              <span class="w-2 h-2 rounded-full bg-cyan-400 radar-dot"></span>
+              <span>SMARTEYE WORKSTATION • BIODIRECTIONAL TRACE & RISK HEATMAP ACTIVE</span>
+            </div>
+            <span class="text-emerald-400 font-bold px-2.5 py-0.5 rounded bg-emerald-950 border border-emerald-800">ISO 13485:2016 COMPLIANT</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. TRENDY BENTO GRID (CAPABILITIES & SPEED) -->
+  <section id="bento" class="relative z-10 py-24 bg-slate-950/90 border-t border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-mono font-bold tracking-widest text-cyan-400 uppercase block mb-2">Core Capabilities</span>
+        <h2 class="text-3xl sm:text-5xl font-black text-white tracking-tight">The Modern MedTech Architecture</h2>
+        <p class="mt-4 text-slate-400 text-sm sm:text-base">
+          Built from the ground up for software-driven medical devices, clinical diagnostic AI, and hardware-software systems.
+        </p>
+      </div>
+
+      <!-- Bento Grid Layout -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Bento 1: Dynamic Trace Matrix (Span 2) -->
+        <div class="md:col-span-2 cyber-card p-8 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-mono px-3 py-1 rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-800">TRACEABILITY ENGINE</span>
+              <span class="text-xs font-mono text-emerald-400 flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 live-pulse"></span> Bi-Directional
+              </span>
+            </div>
+            <h3 class="text-2xl font-black text-white mb-3">Live Dynamic Trace Matrix</h3>
+            <p class="text-sm text-slate-400 leading-relaxed max-w-xl">
+              Connect User Needs &rarr; System Requirements &rarr; ISO 14971 Hazards &rarr; V&V Verification Tests &rarr; Automated Reports. Never reconstruct broken trace matrices before an audit again.
+            </p>
+          </div>
+          <!-- Visual Mock Component -->
+          <div class="mt-6 p-4 rounded-xl bg-slate-900/90 border border-slate-800 font-mono text-xs space-y-2">
+            <div class="flex justify-between text-slate-300">
+              <span class="text-cyan-400">[UN-014] Arrhythmia Alert Latency</span>
+              <span class="text-emerald-400">&rarr; [SRS-204] Inference Engine</span>
+            </div>
+            <div class="flex justify-between text-slate-400 text-[11px]">
+              <span class="text-amber-400">&rarr; [HAZ-089] Risk Mitigated</span>
+              <span class="text-purple-400">&rarr; [TC-VER-512] Test Passed (284ms)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento 2: SaMD & Agile Software (Span 1) -->
+        <div class="cyber-card p-8 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-purple-950 text-purple-400 flex items-center justify-center mb-5 border border-purple-800">
+              <i data-lucide="git-branch" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Agile SaMD Lifecycle</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Bridge Jira, Azure Boards, and GitHub directly with IEC 62304 design controls without breaking engineering sprint velocity.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/5 text-xs font-mono text-cyan-400 flex items-center justify-between">
+            <span>Classes A, B, and C</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </div>
+        </div>
+
+        <!-- Bento 3: ISO 14971 Risk (Span 1) -->
+        <div class="cyber-card p-8 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-amber-950 text-amber-400 flex items-center justify-center mb-5 border border-amber-800">
+              <i data-lucide="shield-alert" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">ISO 14971 Risk Engine</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Automated FMEA hazard identification, pre/post-mitigation scoring, ALARP threshold verification, and Risk Management File (RMF) compilation.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/5 text-xs font-mono text-amber-400 flex items-center justify-between">
+            <span>Risk-to-Control Closed Loop</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </div>
+        </div>
+
+        <!-- Bento 4: 21 CFR Part 11 & Auto DHF/DMR (Span 2) -->
+        <div class="md:col-span-2 cyber-card p-8 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-mono px-3 py-1 rounded-full bg-emerald-950/80 text-emerald-300 border border-emerald-800">REGULATORY COMPLIANCE</span>
+              <span class="text-xs font-mono text-slate-400">Cryptographic E-Signatures</span>
+            </div>
+            <h3 class="text-2xl font-black text-white mb-3">21 CFR Part 11 & Automated DHF / DMR</h3>
+            <p class="text-sm text-slate-400 leading-relaxed max-w-xl">
+              Multi-party review and approval workflows with tamper-evident audit trails. SmartEye automatically compiles the Design History File (DHF) and Device Master Record (DMR) into audit-ready PDF archives.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/5 flex flex-wrap items-center justify-between text-xs font-mono text-slate-400 gap-2">
+            <span>• Pre-executed IQ / OQ / PQ Reports</span>
+            <span>• ISO 9001 & 27001 BSI Certified</span>
+            <span class="text-emerald-400 font-bold">• Zero Re-validation Charges</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. INTERACTIVE TRACEABILITY MATRIX EXPLORER -->
+  <section id="trace-matrix" class="relative z-10 py-24 bg-slate-900/60 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <span class="text-xs font-mono font-bold tracking-widest text-cyan-400 uppercase block mb-2">Live Verification Simulator</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-white">Experience End-to-End Traceability</h2>
+          <p class="text-sm text-slate-400 mt-2">
+            Switch between real-world medical device topologies to see upstream and downstream linkages update in real time.
+          </p>
+        </div>
+        <div>
+          <div class="text-xs font-mono text-slate-400 mb-2 uppercase font-bold">Select Scenario:</div>
+          <div id="scenarioSelector" class="flex flex-wrap gap-2"></div>
+        </div>
+      </div>
+
+      <!-- High-Resolution Trace Matrix Architecture Graphic -->
+      <div class="mb-10 rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-cyan-500/10">
+        <img src="assets/smarteye-trace-matrix.jpg" alt="SmartEye eQMS Interactive Traceability Node Graph" class="w-full h-auto object-cover" />
+      </div>
+
+      <!-- Trace Matrix Board -->
+      <div class="cyber-card p-6 sm:p-8 bg-slate-950/90 border border-slate-800">
+        <!-- Top Board Info -->
+        <div class="flex flex-wrap items-center justify-between pb-6 mb-6 border-b border-white/10 gap-3">
+          <div class="flex items-center gap-3">
+            <span class="w-3 h-3 rounded-full bg-emerald-400 live-pulse"></span>
+            <span class="text-xs font-mono uppercase text-slate-300 font-bold">Audit Status:</span>
+            <span id="traceStatus" class="text-xs font-mono px-3 py-1 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-bold">
+              DHF & DMR Ready • 21 CFR Part 11 Signed
+            </span>
+          </div>
+          <div class="text-xs font-mono text-slate-400">
+            Microsoft Azure Cloud SQL Grid • 100% Bi-Directional Synchronized
+          </div>
+        </div>
+
+        <!-- 4-Stage Columns -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <!-- 1. User Need -->
+          <div class="p-5 rounded-xl bg-slate-900 border border-white/5 flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center mb-3">
+                <span class="text-[11px] font-mono text-cyan-400 font-bold">1. USER NEED</span>
+                <span id="traceUnCode" class="text-xs font-mono px-2 py-0.5 rounded bg-cyan-950 text-cyan-300">UN-014</span>
+              </div>
+              <h5 id="traceUnTitle" class="text-sm font-bold text-white mb-2">Real-time Arrhythmia Alerting</h5>
+              <p id="traceUnDesc" class="text-xs text-slate-400 leading-relaxed">
+                Clinician alert notification within 500ms of irregular atrial rhythm detection.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-white/5 text-[11px] text-emerald-400 font-mono flex items-center justify-between">
+              <span>Origin: Clinical Spec</span>
+              <i data-lucide="check-circle" class="w-4 h-4"></i>
+            </div>
+          </div>
+
+          <!-- 2. Software Spec -->
+          <div class="p-5 rounded-xl bg-slate-900 border border-white/5 flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center mb-3">
+                <span class="text-[11px] font-mono text-purple-400 font-bold">2. SOFTWARE SPEC</span>
+                <span id="traceSrsCode" class="text-xs font-mono px-2 py-0.5 rounded bg-purple-950 text-purple-300">SRS-204</span>
+              </div>
+              <h5 id="traceSrsTitle" class="text-sm font-bold text-white mb-2">Inference Latency & Accuracy</h5>
+              <p id="traceSrsDesc" class="text-xs text-slate-400 leading-relaxed">
+                ECG inference model sensitivity >= 98.5% with priority webhook dispatch < 350ms.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-white/5 text-[11px] text-purple-400 font-mono flex items-center justify-between">
+              <span>IEC 62304 Class B</span>
+              <i data-lucide="git-pull-request" class="w-4 h-4"></i>
+            </div>
+          </div>
+
+          <!-- 3. ISO 14971 Risk -->
+          <div class="p-5 rounded-xl bg-slate-900 border border-white/5 flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center mb-3">
+                <span class="text-[11px] font-mono text-amber-400 font-bold">3. ISO 14971 RISK</span>
+                <span id="traceHazCode" class="text-xs font-mono px-2 py-0.5 rounded bg-amber-950 text-amber-300">HAZ-089</span>
+              </div>
+              <h5 id="traceHazRisk" class="text-sm font-bold text-white mb-1">Delayed Alert Notification</h5>
+              <div id="traceHazSeverity" class="text-[11px] font-mono text-amber-400 mb-2 font-bold">Critical (S4)</div>
+              <p id="traceHazControl" class="text-xs text-slate-400 leading-relaxed">
+                Dual fallback local alarm + Cloud heartbeat monitor
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-white/5 text-[11px] text-amber-400 font-mono flex items-center justify-between">
+              <span>Residual: ALARP Acceptable</span>
+              <i data-lucide="shield-check" class="w-4 h-4"></i>
+            </div>
+          </div>
+
+          <!-- 4. V&V Test Case -->
+          <div class="p-5 rounded-xl bg-slate-900 border border-white/5 flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center mb-3">
+                <span class="text-[11px] font-mono text-emerald-400 font-bold">4. V&V EXECUTION</span>
+                <span id="traceTcCode" class="text-xs font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300">TC-VER-512</span>
+              </div>
+              <h5 id="traceTcType" class="text-sm font-bold text-white mb-2">IEC 62304 Automated Suite</h5>
+              <p id="traceTcResult" class="text-xs text-emerald-400 font-bold">
+                PASSED (100% Coverage, 284ms latency)
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-white/5 text-[11px] text-emerald-400 font-mono flex items-center justify-between">
+              <span>Test Matrix Exportable</span>
+              <i data-lucide="file-check" class="w-4 h-4"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. REGULATORY STANDARDS RADAR -->
+  <section id="standards" class="relative z-10 py-24 bg-slate-950/90 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-mono font-bold tracking-widest text-cyan-400 uppercase block mb-2">Global Harmonization</span>
+        <h2 class="text-3xl sm:text-5xl font-black text-white">Universal Medical Standards</h2>
+        <p class="mt-4 text-slate-400 text-sm sm:text-base">
+          Pre-structured compliance frameworks ensure smooth clearance across FDA (USA), CE Mark (Europe), MHRA (UK), and TGA (Australia).
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="cyber-card p-6">
+          <div class="flex justify-between items-center mb-3">
+            <span class="font-mono text-xs font-bold text-cyan-400">ISO 13485:2016</span>
+            <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>
+          </div>
+          <h4 class="text-base font-bold text-white mb-2">Medical Device Quality Management</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">Full quality planning, management reviews, CAPA, resource controls, and document retention.</p>
+        </div>
+
+        <div class="cyber-card p-6">
+          <div class="flex justify-between items-center mb-3">
+            <span class="font-mono text-xs font-bold text-amber-400">ISO 14971</span>
+            <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>
+          </div>
+          <h4 class="text-base font-bold text-white mb-2">Risk Management for Medical Devices</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">Systematic hazard analysis, risk evaluation, risk control verification, and post-market safety feedback.</p>
+        </div>
+
+        <div class="cyber-card p-6">
+          <div class="flex justify-between items-center mb-3">
+            <span class="font-mono text-xs font-bold text-purple-400">IEC 62304</span>
+            <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>
+          </div>
+          <h4 class="text-base font-bold text-white mb-2">Medical Device Software Lifecycle</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">Software safety classification, architectural design, unit verification, and maintenance workflows.</p>
+        </div>
+
+        <div class="cyber-card p-6">
+          <div class="flex justify-between items-center mb-3">
+            <span class="font-mono text-xs font-bold text-rose-400">FDA 21 CFR 820 / QMSR</span>
+            <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>
+          </div>
+          <h4 class="text-base font-bold text-white mb-2">FDA Quality System Regulation</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">Design controls (820.30), DHF, DMR, DHR, CAPA, and management reviews aligned with FDA QMSR.</p>
+        </div>
+
+        <div class="cyber-card p-6">
+          <div class="flex justify-between items-center mb-3">
+            <span class="font-mono text-xs font-bold text-emerald-400">FDA 21 CFR Part 11</span>
+            <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>
+          </div>
+          <h4 class="text-base font-bold text-white mb-2">Electronic Records & Signatures</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">Computer-generated time-stamped audit trails, dual credential signature locks, and record authenticity.</p>
+        </div>
+
+        <div class="cyber-card p-6">
+          <div class="flex justify-between items-center mb-3">
+            <span class="font-mono text-xs font-bold text-blue-400">EU MDR 2017/745</span>
+            <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>
+          </div>
+          <h4 class="text-base font-bold text-white mb-2">MDR Technical Documentation</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">Annex II & III Technical Files, Post-Market Surveillance (PMS), and Periodic Safety Update Reports (PSUR).</p>
+        </div>
+      </div>
+
+      <!-- Competitor Comparison Grid -->
+      <div id="comparison" class="mt-20 pt-16 border-t border-white/5">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <span class="text-xs font-mono font-bold tracking-widest text-cyan-400 uppercase block mb-2">COMPETITIVE INTELLIGENCE</span>
+          <h3 class="text-2xl sm:text-3xl font-black text-white">SmartEye vs. Greenlight Guru, Qualio & MasterControl</h3>
+          <p class="text-slate-400 text-xs sm:text-sm mt-2">Engineered for SaMD agility and medtech compliance without enterprise legacy drag or generic life-science compromises.</p>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse font-mono">
+            <thead>
+              <tr class="border-b border-white/10">
+                <th class="py-4 px-4 font-bold text-slate-300 w-1/5">CAPABILITY MATRIX</th>
+                <th class="py-4 px-4 font-black text-cyan-300 bg-cyan-950/60 rounded-t-xl text-center w-1/5 border-x border-t border-cyan-800/60">
+                  <div class="text-emerald-400 font-extrabold">SMARTEYE eQMS</div>
+                  <span class="text-[9px] text-cyan-400 block tracking-normal normal-case font-sans mt-0.5">MedTech & SaMD Native</span>
+                </th>
+                <th class="py-4 px-4 font-bold text-slate-300 text-center w-1/5 border-t border-white/5">
+                  <div class="text-white">GREENLIGHT GURU</div>
+                  <span class="text-[9px] text-slate-500 block tracking-normal normal-case font-sans mt-0.5">MedTech QMS</span>
+                </th>
+                <th class="py-4 px-4 font-bold text-slate-300 text-center w-1/5 border-t border-white/5">
+                  <div class="text-white">QUALIO</div>
+                  <span class="text-[9px] text-slate-500 block tracking-normal normal-case font-sans mt-0.5">General Life Sciences</span>
+                </th>
+                <th class="py-4 px-4 font-bold text-slate-300 text-center w-1/5 border-t border-white/5">
+                  <div class="text-white">MASTERCONTROL</div>
+                  <span class="text-[9px] text-slate-500 block tracking-normal normal-case font-sans mt-0.5">Enterprise Pharma/Mfg</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5 text-slate-400">
+              <tr>
+                <td class="py-4 px-4 font-bold text-white">Target Focus</td>
+                <td class="py-4 px-4 text-center font-bold text-emerald-400 bg-cyan-950/40 border-x border-cyan-800/60">
+                  PURE MEDTECH & SaMD
+                </td>
+                <td class="py-4 px-4 text-center text-slate-300">Med Devices (Hardware)</td>
+                <td class="py-4 px-4 text-center text-slate-300">Pharma / Biotech / Labs</td>
+                <td class="py-4 px-4 text-center text-slate-400">Pharma & Big Mfg</td>
+              </tr>
+              <tr>
+                <td class="py-4 px-4 font-bold text-white">Go-Live / Velocity</td>
+                <td class="py-4 px-4 text-center font-bold text-emerald-400 bg-cyan-950/40 border-x border-cyan-800/60">
+                  2 TO 4 WEEKS
+                </td>
+                <td class="py-4 px-4 text-center text-slate-300">8 to 12 Weeks</td>
+                <td class="py-4 px-4 text-center text-slate-300">4 to 8 Weeks</td>
+                <td class="py-4 px-4 text-center text-rose-400 font-bold">6 to 12+ Months</td>
+              </tr>
+              <tr>
+                <td class="py-4 px-4 font-bold text-white">SaMD & Agile Integration</td>
+                <td class="py-4 px-4 text-center font-bold text-cyan-300 bg-cyan-950/40 border-x border-cyan-800/60">
+                  NATIVE JIRA / AZURE SYNC
+                </td>
+                <td class="py-4 px-4 text-center text-slate-300">Jira Add-on (Sync lag)</td>
+                <td class="py-4 px-4 text-center text-slate-300">Basic Webhooks / API</td>
+                <td class="py-4 px-4 text-center text-slate-400">Custom Middleware</td>
+              </tr>
+              <tr>
+                <td class="py-4 px-4 font-bold text-white">Multi-Tier Trace Matrix</td>
+                <td class="py-4 px-4 text-center font-bold text-emerald-400 bg-cyan-950/40 border-x border-cyan-800/60">
+                  100% REAL-TIME DYNAMIC
+                </td>
+                <td class="py-4 px-4 text-center text-slate-300">Visual Tree Matrix</td>
+                <td class="py-4 px-4 text-center text-slate-300">Document Linking</td>
+                <td class="py-4 px-4 text-center text-slate-400">Static Batch Reports</td>
+              </tr>
+              <tr>
+                <td class="py-4 px-4 font-bold text-white">ISO 14971 Risk Engine</td>
+                <td class="py-4 px-4 text-center font-bold text-cyan-300 bg-cyan-950/40 border-x border-cyan-800/60">
+                  CONNECTED TO SPECS & V&V
+                </td>
+                <td class="py-4 px-4 text-center text-slate-300">Dedicated Matrix Module</td>
+                <td class="py-4 px-4 text-center text-slate-400">Spreadsheet-Like Tables</td>
+                <td class="py-4 px-4 text-center text-slate-400">Siloed Risk Module</td>
+              </tr>
+              <tr>
+                <td class="py-4 px-4 font-bold text-white">Part 11 CSV Validation</td>
+                <td class="py-4 px-4 text-center font-bold text-emerald-400 bg-cyan-950/40 border-x border-cyan-800/60">
+                  PRE-EXECUTED IQ/OQ/PQ
+                </td>
+                <td class="py-4 px-4 text-center text-slate-300">Automated CSV Pack</td>
+                <td class="py-4 px-4 text-center text-slate-300">Automated CSV Pack</td>
+                <td class="py-4 px-4 text-center text-rose-400 font-bold">Client Bears Heavy CSV</td>
+              </tr>
+              <tr>
+                <td class="py-4 px-4 font-bold text-white">Dedicated QARA Expert</td>
+                <td class="py-4 px-4 text-center font-bold text-cyan-300 bg-cyan-950/40 border-x border-b border-cyan-800/60 rounded-b-xl">
+                  INCLUDED IN ONBOARDING
+                </td>
+                <td class="py-4 px-4 text-center text-slate-300">Guru Edge Add-on ($$$)</td>
+                <td class="py-4 px-4 text-center text-slate-300">Tech Specialist Only</td>
+                <td class="py-4 px-4 text-center text-rose-400 font-bold">Expensive Billable Hours</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. READY-TO-USE REGULATORY TEMPLATES -->
+  <section id="templates" class="relative z-10 py-24 bg-slate-900/40 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs font-mono font-bold tracking-widest text-cyan-400 uppercase block mb-2">Rapid Deployment</span>
+        <h2 class="text-3xl sm:text-5xl font-black text-white">Pre-Packaged Regulatory Templates</h2>
+        <p class="mt-4 text-slate-400 text-sm sm:text-base">
+          Start day one with audit-proven templates authored by medical device QARA directors, or import your custom formats.
+        </p>
+      </div>
+
+      <!-- Filters -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-10">
+        <button class="template-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/25" data-filter="all">All Templates</button>
+        <button class="template-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-slate-900 text-slate-300 hover:bg-slate-800" data-filter="qms">ISO 13485 QMS</button>
+        <button class="template-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-slate-900 text-slate-300 hover:bg-slate-800" data-filter="samd">IEC 62304 SaMD</button>
+        <button class="template-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-slate-900 text-slate-300 hover:bg-slate-800" data-filter="risk">ISO 14971 Risk</button>
+        <button class="template-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-slate-900 text-slate-300 hover:bg-slate-800" data-filter="mdr">MDR Technical Files</button>
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="template-card cyber-card p-6" data-category="qms">
+          <span class="text-[10px] font-mono text-cyan-400 block mb-1">ISO 13485 QMS</span>
+          <h5 class="text-base font-bold text-white mb-2">Core Quality SOP Suite (24 SOPs)</h5>
+          <p class="text-xs text-slate-400 mb-4 leading-relaxed">Turnkey SOPs covering Document Control, Management Review, CAPA, Supplier Qualification, and Internal Audits.</p>
+          <button class="open-demo-modal text-xs font-mono text-cyan-400 font-bold hover:underline" data-interest="Preview ISO 13485 Template Index">Inspect Index &rarr;</button>
+        </div>
+
+        <div class="template-card cyber-card p-6" data-category="samd">
+          <span class="text-[10px] font-mono text-purple-400 block mb-1">IEC 62304 / SaMD</span>
+          <h5 class="text-base font-bold text-white mb-2">Software Lifecycle Pack (SDP & SVP)</h5>
+          <p class="text-xs text-slate-400 mb-4 leading-relaxed">Software Development Plan, Architecture Specification, Verification Plan, and SOUP evaluation registers.</p>
+          <button class="open-demo-modal text-xs font-mono text-purple-400 font-bold hover:underline" data-interest="Preview IEC 62304 Template Index">Inspect Index &rarr;</button>
+        </div>
+
+        <div class="template-card cyber-card p-6" data-category="risk">
+          <span class="text-[10px] font-mono text-amber-400 block mb-1">ISO 14971 RISK</span>
+          <h5 class="text-base font-bold text-white mb-2">Risk Management Plan & FMEA Matrix</h5>
+          <p class="text-xs text-slate-400 mb-4 leading-relaxed">Hazard Identification Checklist, Pre/Post-Mitigation FMEA Matrix, and Risk Management Report generator.</p>
+          <button class="open-demo-modal text-xs font-mono text-amber-400 font-bold hover:underline" data-interest="Preview ISO 14971 Template Index">Inspect Index &rarr;</button>
+        </div>
+
+        <div class="template-card cyber-card p-6" data-category="mdr">
+          <span class="text-[10px] font-mono text-blue-400 block mb-1">EU MDR 2017/745</span>
+          <h5 class="text-base font-bold text-white mb-2">Annex II & III Technical File Pack</h5>
+          <p class="text-xs text-slate-400 mb-4 leading-relaxed">Structured Technical File templates for Notified Body conformity assessments, PMS plans, and PSUR files.</p>
+          <button class="open-demo-modal text-xs font-mono text-blue-400 font-bold hover:underline" data-interest="Preview EU MDR Template Index">Inspect Index &rarr;</button>
+        </div>
+
+        <div class="template-card cyber-card p-6" data-category="qms">
+          <span class="text-[10px] font-mono text-rose-400 block mb-1">FDA DESIGN CONTROLS</span>
+          <h5 class="text-base font-bold text-white mb-2">DHF & DMR Architecture Registers</h5>
+          <p class="text-xs text-slate-400 mb-4 leading-relaxed">Design Input/Output registers, Phase-Gate Review meeting protocols, and Device Master Record compilation.</p>
+          <button class="open-demo-modal text-xs font-mono text-rose-400 font-bold hover:underline" data-interest="Preview FDA DHF/DMR Template Index">Inspect Index &rarr;</button>
+        </div>
+
+        <div class="template-card cyber-card p-6" data-category="samd">
+          <span class="text-[10px] font-mono text-emerald-400 block mb-1">IEC 62366 USABILITY</span>
+          <h5 class="text-base font-bold text-white mb-2">Human Factors & Usability Suite</h5>
+          <p class="text-xs text-slate-400 mb-4 leading-relaxed">User interface specification, formative usability protocol, and summative clinical usability report.</p>
+          <button class="open-demo-modal text-xs font-mono text-emerald-400 font-bold hover:underline" data-interest="Preview Usability Template Index">Inspect Index &rarr;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. INTERACTIVE ROI & EFFICIENCY CALCULATOR -->
+  <section id="roi" class="relative z-10 py-24 bg-slate-950 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-mono font-bold tracking-widest text-cyan-400 uppercase block mb-2">Economic Modeling</span>
+        <h2 class="text-3xl sm:text-5xl font-black text-white">Quantify Your Compliance Savings</h2>
+        <p class="mt-4 text-slate-400 text-sm sm:text-base">
+          Calculate the hours and capital recaptured when shifting from manual spreadsheets to SmartEye.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto cyber-card p-8 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <!-- Sliders -->
+        <div class="lg:col-span-7 space-y-6">
+          <div>
+            <div class="flex justify-between text-xs font-mono text-slate-300 font-bold mb-2">
+              <span>TEAM SIZE (ENGINEERS & QA):</span>
+              <span id="displayTeamSize" class="text-cyan-400">12 People</span>
+            </div>
+            <input type="range" id="calcTeamSize" min="2" max="100" value="12" class="w-full accent-cyan-400 cursor-pointer" oninput="document.getElementById('displayTeamSize').innerText = this.value + ' People'" />
+          </div>
+
+          <div>
+            <div class="flex justify-between text-xs font-mono text-slate-300 font-bold mb-2">
+              <span>ANNUAL AUDITS & SUBMISSIONS:</span>
+              <span id="displayAudits" class="text-cyan-400">3 Audits</span>
+            </div>
+            <input type="range" id="calcAudits" min="1" max="10" value="3" class="w-full accent-cyan-400 cursor-pointer" oninput="document.getElementById('displayAudits').innerText = this.value + ' Audits'" />
+          </div>
+
+          <div>
+            <div class="flex justify-between text-xs font-mono text-slate-300 font-bold mb-2">
+              <span>HOURLY ENGINEERING RATE ($):</span>
+              <span id="displayRate" class="text-cyan-400">$85 / hr</span>
+            </div>
+            <input type="range" id="calcHourlyRate" min="40" max="200" step="5" value="85" class="w-full accent-cyan-400 cursor-pointer" oninput="document.getElementById('displayRate').innerText = '$' + this.value + ' / hr'" />
+          </div>
+        </div>
+
+        <!-- Calculated Summary -->
+        <div class="lg:col-span-5 bg-slate-900/90 rounded-2xl p-6 border border-white/10 text-center space-y-4">
+          <div>
+            <div class="text-[10px] font-mono text-slate-400 uppercase">Annual Admin Hours Recaptured</div>
+            <div id="outHoursSaved" class="text-3xl sm:text-4xl font-black text-cyan-400 font-mono mt-1">1,740 hrs</div>
+          </div>
+          <div class="pt-3 border-t border-white/10">
+            <div class="text-[10px] font-mono text-slate-400 uppercase">Estimated Dollar Value Saved</div>
+            <div id="outCostSaved" class="text-3xl font-black text-emerald-400 font-mono mt-1">$147,900</div>
+          </div>
+          <div class="pt-3 border-t border-white/10">
+            <div class="text-[10px] font-mono text-slate-400 uppercase">Release Velocity Acceleration</div>
+            <div id="outReleaseVelocity" class="text-xl font-bold text-white font-mono mt-1">3.2x Velocity</div>
+          </div>
+          <button class="open-demo-modal w-full btn-cinema-glow py-3 rounded-full text-xs font-black uppercase tracking-wider" data-interest="Custom Organization ROI Analysis">
+            Download Custom ROI Report
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. CLOSING CINEMATIC BANNER -->
+  <section class="relative z-10 py-24 bg-gradient-to-b from-slate-950 to-black text-white text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+        Ready to Experience Autonomous Quality Management?
+      </h2>
+      <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
+        Join leading medical device and SaMD organizations deploying SmartEye for rapid time-to-value (2–4 weeks) with dedicated QARA expert pairing.
+      </p>
+      <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
+        <button class="open-demo-modal btn-cinema-glow px-8 py-4 rounded-full text-sm font-black uppercase tracking-wider" data-interest="Closing Executive Consultation">
+          Schedule Live Walkthrough
+        </button>
+        <a href="mailto:info@scube-technologies.com" class="btn-cinema-outline px-8 py-4 rounded-full text-sm font-bold">
+          Email info@scube-technologies.com
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. ENTERPRISE FOOTER -->
+  <footer class="relative z-10 bg-black text-slate-400 py-16 text-xs border-t border-white/5 font-mono">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div class="space-y-3 font-sans">
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 rounded-lg bg-cyan-500 text-slate-950 flex items-center justify-center font-bold">
+            <i data-lucide="eye" class="w-4 h-4"></i>
+          </div>
+          <span class="text-base font-black text-white">SmartEye eQMS</span>
+        </div>
+        <p class="text-xs text-slate-400 font-sans leading-relaxed">
+          Developed by <strong>S-Cube Technologies Limited</strong>. Cloud-based eQMS for Medical Devices & SaMD Compliance.
+        </p>
+        <div class="text-[11px] text-slate-400 space-y-1 pt-1 font-mono">
+          <div>125 Deansgate, Manchester, M3 2LH, UK</div>
+          <div>Email: <a href="mailto:info@scube-technologies.com" class="text-cyan-400">info@scube-technologies.com</a></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="text-white font-bold mb-3 uppercase tracking-wider text-[11px]">Platform</div>
+        <ul class="space-y-2 text-slate-400">
+          <li><a href="#trace-matrix" class="hover:text-white">Dynamic Trace Matrix</a></li>
+          <li><a href="#bento" class="hover:text-white">ISO 14971 Risk Engine</a></li>
+          <li><a href="#bento" class="hover:text-white">IEC 62304 SaMD Lifecycles</a></li>
+          <li><a href="#bento" class="hover:text-white">FDA 21 CFR Part 11 Signatures</a></li>
+          <li><a href="#bento" class="hover:text-white">Auto DHF & DMR Generation</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="text-white font-bold mb-3 uppercase tracking-wider text-[11px]">Standards</div>
+        <ul class="space-y-2 text-slate-400">
+          <li>ISO 13485:2016 Certified QMS</li>
+          <li>ISO 14971:2019 Risk Management</li>
+          <li>IEC 62304 / IEC 62366-1</li>
+          <li>FDA 21 CFR Part 820 / QMSR</li>
+          <li>FDA 21 CFR Part 11 Electronic Records</li>
+          <li>EU MDR 2017/745 Technical Documentation</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="text-white font-bold mb-3 uppercase tracking-wider text-[11px]">Security & Cloud</div>
+        <ul class="space-y-2 text-slate-400">
+          <li>Hosted on Microsoft Azure Web Services</li>
+          <li>ISO 9001 BSI Certified</li>
+          <li>ISO 27001 BSI Certified</li>
+          <li>GDPR Compliant Infrastructure</li>
+          <li>Pre-completed IQ / OQ / PQ Validation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-400 gap-4 font-sans">
+      <div>&copy; 2026 S-Cube Technologies Limited. All rights reserved. SmartEye eQMS.</div>
+      <div>Designed for Autonomous Medical Device & SaMD Compliance.</div>
+    </div>
+  </footer>
+
+  <!-- DEMO BOOKING MODAL -->
+  <div id="demoModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-blur animate-fadeIn">
+    <div class="bg-slate-900 rounded-3xl shadow-2xl max-w-lg w-full overflow-hidden border border-white/10 relative">
+      <div class="bg-slate-950 p-6 text-white flex items-center justify-between border-b border-white/10">
+        <div>
+          <h4 class="text-lg font-bold">Schedule SmartEye Walkthrough</h4>
+          <p class="text-xs text-slate-400 mt-0.5">Meet with an S-Cube medical device QARA expert</p>
+        </div>
+        <button id="closeDemoModal" class="text-slate-400 hover:text-white p-1 rounded-lg">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-6">
+        <form id="demoForm" class="space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-mono text-slate-300 mb-1">FIRST NAME *</label>
+              <input type="text" required class="w-full px-3.5 py-2.5 text-xs rounded-xl bg-slate-950 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500" placeholder="Jane" />
+            </div>
+            <div>
+              <label class="block text-xs font-mono text-slate-300 mb-1">LAST NAME *</label>
+              <input type="text" required class="w-full px-3.5 py-2.5 text-xs rounded-xl bg-slate-950 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500" placeholder="Doe" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono text-slate-300 mb-1">WORK EMAIL *</label>
+            <input type="email" required class="w-full px-3.5 py-2.5 text-xs rounded-xl bg-slate-950 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500" placeholder="jane@medtech.com" />
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-mono text-slate-300 mb-1">ORGANIZATION *</label>
+              <input type="text" required class="w-full px-3.5 py-2.5 text-xs rounded-xl bg-slate-950 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500" placeholder="Health Devices Inc" />
+            </div>
+            <div>
+              <label class="block text-xs font-mono text-slate-300 mb-1">DEVICE CLASS</label>
+              <select class="w-full px-3.5 py-2.5 text-xs rounded-xl bg-slate-950 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                <option>SaMD (Class I / IIa / IIb)</option>
+                <option>Class II Medical Device</option>
+                <option>Class III Medical Device</option>
+                <option>In Vitro Diagnostic (IVD)</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono text-slate-300 mb-1">PRIMARY FOCUS</label>
+            <input type="text" id="demoInterest" class="w-full px-3.5 py-2.5 text-xs rounded-xl bg-slate-950 border border-slate-700 text-slate-300 focus:outline-none" value="Cinematic Platform Walkthrough" />
+          </div>
+
+          <div class="pt-2 flex items-center justify-end gap-3">
+            <button type="submit" class="w-full btn-cinema-glow py-3 rounded-full text-xs font-black uppercase tracking-wider">
+              Request Live Demo
+            </button>
+          </div>
+        </form>
+
+        <div id="demoSuccessState" class="hidden text-center py-6 space-y-4">
+          <div class="w-14 h-14 rounded-full bg-cyan-950 text-cyan-400 flex items-center justify-center mx-auto border border-cyan-800">
+            <i data-lucide="check" class="w-8 h-8 stroke-[3]"></i>
+          </div>
+          <div>
+            <h5 class="text-base font-bold text-white">Walkthrough Scheduled!</h5>
+            <p class="text-xs text-slate-400 mt-1 max-w-sm mx-auto font-sans">
+              An S-Cube Technologies medical device specialist will contact you within 1 business day with your personalized invitation.
+            </p>
+          </div>
+          <button id="demoDoneBtn" class="btn-cinema-outline px-6 py-2.5 rounded-full text-xs font-bold">
+            Close Window
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
