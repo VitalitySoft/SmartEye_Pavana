@@ -93,6 +93,9 @@
       <!-- Navigation Links -->
       <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-300">
         <a href="#bento" class="hover:text-cyan-400 transition-colors">Capabilities</a>
+        <a href="#motion-showcase" class="hover:text-cyan-400 transition-colors flex items-center gap-1 text-emerald-400 font-bold">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 live-pulse"></span> Motion Telemetry
+        </a>
         <a href="#trace-matrix" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5 text-cyan-300">
           <i data-lucide="git-merge" class="w-4 h-4 text-cyan-400"></i> Live Trace Matrix
         </a>
@@ -119,6 +122,7 @@
     <!-- Mobile Dropdown -->
     <div id="mobileMenu" class="hidden lg:hidden bg-slate-950/95 border-b border-white/10 px-6 py-5 space-y-4">
       <a href="#bento" class="mobile-nav-link block text-sm font-bold text-slate-200">Capabilities</a>
+      <a href="#motion-showcase" class="mobile-nav-link block text-sm font-bold text-emerald-400">Motion Telemetry</a>
       <a href="#trace-matrix" class="mobile-nav-link block text-sm font-bold text-cyan-400">Live Trace Matrix</a>
       <a href="#standards" class="mobile-nav-link block text-sm font-bold text-slate-200">Standards & FDA</a>
       <a href="#comparison" class="mobile-nav-link block text-sm font-bold text-slate-200">Competitor Benchmark</a>
@@ -185,16 +189,59 @@
           </div>
         </div>
 
-        <!-- High-Fidelity Cleanroom & Platform Showcase Image -->
+        <!-- High-Fidelity Cleanroom & Platform Showcase Image with Live Motion Scanner & Interactive Hotspots -->
         <div class="mt-12 max-w-5xl mx-auto rounded-2xl overflow-hidden border border-white/15 shadow-2xl shadow-cyan-500/10 relative group">
           <img src="assets/smarteye-showcase.jpg" alt="SmartEye eQMS Software on Cleanroom Workstation" class="w-full h-auto object-cover transform group-hover:scale-[1.01] transition-transform duration-500" />
+          
+          <!-- Animated Laser Scanner Line -->
+          <div class="laser-scanner-line"></div>
+
+          <!-- Hotspot 1: 21 CFR Part 11 Audit Trail -->
+          <div class="motion-hotspot" style="top: 24%; left: 22%;">
+            <div class="hotspot-dot bg-cyan-400">
+              <span class="hotspot-ping border-cyan-400"></span>
+            </div>
+            <div class="hotspot-tooltip">
+              <div class="text-[10px] font-mono font-bold text-cyan-400 uppercase tracking-wider">FDA 21 CFR PART 11</div>
+              <div class="text-xs font-bold text-white mt-0.5">Secure Electronic Signature Lock</div>
+              <div class="text-[11px] text-slate-400 font-sans mt-0.5">Automated timestamped audit trails on every record edit</div>
+            </div>
+          </div>
+
+          <!-- Hotspot 2: Dynamic Trace Matrix -->
+          <div class="motion-hotspot" style="top: 48%; left: 52%;">
+            <div class="hotspot-dot bg-emerald-400">
+              <span class="hotspot-ping border-emerald-400"></span>
+            </div>
+            <div class="hotspot-tooltip">
+              <div class="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-wider">TRACEABILITY ENGINE</div>
+              <div class="text-xs font-bold text-white mt-0.5">Live Multi-Tier Trace Matrix</div>
+              <div class="text-[11px] text-slate-400 font-sans mt-0.5">User Needs &rarr; System Specs &rarr; Automated V&V Test Runs</div>
+            </div>
+          </div>
+
+          <!-- Hotspot 3: ISO 14971 Risk Engine -->
+          <div class="motion-hotspot" style="top: 36%; left: 80%;">
+            <div class="hotspot-dot bg-purple-400">
+              <span class="hotspot-ping border-purple-400"></span>
+            </div>
+            <div class="hotspot-tooltip">
+              <div class="text-[10px] font-mono font-bold text-purple-400 uppercase tracking-wider">ISO 14971:2019</div>
+              <div class="text-xs font-bold text-white mt-0.5">Residual Risk ALARP Verified</div>
+              <div class="text-[11px] text-slate-400 font-sans mt-0.5">Real-time risk heatmap connected to design control items</div>
+            </div>
+          </div>
+
           <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60 pointer-events-none"></div>
           <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-slate-950/80 backdrop-blur-xl border border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
             <div class="flex items-center gap-2.5 text-cyan-300">
               <span class="w-2 h-2 rounded-full bg-cyan-400 radar-dot"></span>
-              <span>SMARTEYE WORKSTATION • BIODIRECTIONAL TRACE & RISK HEATMAP ACTIVE</span>
+              <span>SMARTEYE WORKSTATION • BI-DIRECTIONAL TRACE & RISK SCANNER ACTIVE</span>
             </div>
-            <span class="text-emerald-400 font-bold px-2.5 py-0.5 rounded bg-emerald-950 border border-emerald-800">ISO 13485:2016 COMPLIANT</span>
+            <div class="flex items-center gap-3">
+              <span class="text-[11px] text-slate-400 hidden sm:inline">&bull; Hover glowing nodes to inspect live telemetry</span>
+              <span class="text-emerald-400 font-bold px-2.5 py-0.5 rounded bg-emerald-950 border border-emerald-800">ISO 13485:2016 COMPLIANT</span>
+            </div>
           </div>
         </div>
       </div>
@@ -297,6 +344,145 @@
     </div>
   </section>
 
+  <!-- 2.5 SMART EYE IN MOTION: REAL-TIME MEDICAL QUALITY TELEMETRY -->
+  <section id="motion-showcase" class="relative z-10 py-24 bg-slate-950 border-b border-white/5 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-mono font-bold tracking-widest text-emerald-400 uppercase block mb-2 flex items-center justify-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 live-pulse"></span>
+          LIVE QUALITY IN MOTION
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-black text-white tracking-tight">Compliance at the Speed of Modern MedTech</h2>
+        <p class="mt-4 text-slate-400 text-sm sm:text-base">
+          Watch how SmartEye connects cleanroom laboratory operations, automated testing, and regulatory submissions into a continuous, motion-driven feedback loop.
+        </p>
+      </div>
+
+      <!-- 2-Column Motion Layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        <!-- Col 1: High-Definition Cleanroom Laboratory Motion Video Stream -->
+        <div class="lg:col-span-7 motion-video-frame group flex flex-col justify-between bg-slate-900/90 p-1">
+          <div class="relative w-full h-[380px] sm:h-[440px] rounded-xl overflow-hidden">
+            <!-- High-Definition Cleanroom Laboratory Video Loop -->
+            <video class="w-full h-full object-cover" autoplay loop muted playsinline poster="assets/smarteye-showcase.jpg">
+              <source src="https://assets.mixkit.co/videos/preview/mixkit-scientist-working-in-a-laboratory-40919-large.mp4" type="video/mp4" />
+            </video>
+            
+            <!-- Scanning Line -->
+            <div class="laser-scanner-line"></div>
+
+            <!-- Video Header HUD -->
+            <div class="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+              <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-950/80 backdrop-blur-md border border-white/10 text-xs font-mono text-cyan-300">
+                <span class="w-2 h-2 rounded-full bg-rose-500 live-pulse"></span>
+                <span>REC • CLEANROOM V&V WORKSTATION</span>
+              </div>
+              <div class="px-2.5 py-1 rounded-md bg-emerald-950/90 border border-emerald-700/80 text-emerald-300 font-mono text-[11px] font-bold">
+                ISO CLASS 7 CERTIFIED
+              </div>
+            </div>
+
+            <!-- Video Bottom HUD -->
+            <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-slate-950/85 backdrop-blur-xl border border-white/10 text-xs font-mono flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <span class="text-slate-400 block text-[10px]">ACTIVE PROTOCOL</span>
+                <span class="text-white font-bold">PQ-892: Automated Calibration & Micro-Discharge Verification</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-cyan-400 font-bold">120 FPS TELEMETRY</span>
+                <span class="px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800 text-[10px]">PART 11 SECURE</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 2: Animated Dynamic Traceability Pipeline Graph -->
+        <div class="lg:col-span-5 cyber-card p-6 sm:p-8 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-mono px-3 py-1 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800 font-bold">
+                DYNAMIC MOTION GRAPH
+              </span>
+              <span class="text-xs font-mono text-emerald-400 flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 live-pulse"></span> Synchronized
+              </span>
+            </div>
+            <h3 class="text-xl font-black text-white mb-2">Automated Lifecycle Flow</h3>
+            <p class="text-xs text-slate-400 leading-relaxed mb-6">
+              When a software developer pushes code in Jira or a hardware engineer edits a risk score, data pulses automatically traverse every connected tier in real time.
+            </p>
+
+            <!-- Interactive Animated Flow Diagram -->
+            <div class="space-y-3 font-mono text-xs">
+              <!-- Step 1 -->
+              <div class="p-3.5 rounded-xl bg-slate-900 border border-cyan-500/30 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-7 h-7 rounded-lg bg-cyan-950 text-cyan-400 flex items-center justify-center font-bold text-xs border border-cyan-800">
+                    UN
+                  </div>
+                  <div>
+                    <span class="text-slate-300 font-bold block text-xs">User Need Defined</span>
+                    <span class="text-[10px] text-slate-500">UN-014: High-Priority Alerting</span>
+                  </div>
+                </div>
+                <span class="text-[10px] text-cyan-400 font-bold">Approved</span>
+              </div>
+
+              <!-- Animated Connector 1 -->
+              <div class="flex justify-center -my-1">
+                <svg width="24" height="20" viewBox="0 0 24 20" fill="none">
+                  <line x1="12" y1="0" x2="12" y2="20" stroke="#06B6D4" stroke-width="2" class="animated-flow-line" />
+                </svg>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="p-3.5 rounded-xl bg-slate-900 border border-purple-500/30 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-7 h-7 rounded-lg bg-purple-950 text-purple-400 flex items-center justify-center font-bold text-xs border border-purple-800">
+                    ISO
+                  </div>
+                  <div>
+                    <span class="text-slate-300 font-bold block text-xs">ISO 14971 Risk Evaluated</span>
+                    <span class="text-[10px] text-slate-500">HAZ-089: Delayed Response Mitigated</span>
+                  </div>
+                </div>
+                <span class="text-[10px] text-purple-400 font-bold">ALARP Verified</span>
+              </div>
+
+              <!-- Animated Connector 2 -->
+              <div class="flex justify-center -my-1">
+                <svg width="24" height="20" viewBox="0 0 24 20" fill="none">
+                  <line x1="12" y1="0" x2="12" y2="20" stroke="#A855F7" stroke-width="2" class="animated-flow-line" />
+                </svg>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="p-3.5 rounded-xl bg-slate-900 border border-emerald-500/30 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-7 h-7 rounded-lg bg-emerald-950 text-emerald-400 flex items-center justify-center font-bold text-xs border border-emerald-800">
+                    V&V
+                  </div>
+                  <div>
+                    <span class="text-slate-300 font-bold block text-xs">Automated Test Execution</span>
+                    <span class="text-[10px] text-slate-500">TC-512: Latency 284ms &bull; 100% Pass</span>
+                  </div>
+                </div>
+                <span class="text-[10px] text-emerald-400 font-bold">DHF Signed</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono">
+            <span class="text-slate-400">Zero Manual Synchronization</span>
+            <span class="text-cyan-400 font-bold flex items-center gap-1">
+              <i data-lucide="zap" class="w-3.5 h-3.5"></i> Live Continuous DHF
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 3. INTERACTIVE TRACEABILITY MATRIX EXPLORER -->
   <section id="trace-matrix" class="relative z-10 py-24 bg-slate-900/60 border-b border-white/5">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -314,9 +500,10 @@
         </div>
       </div>
 
-      <!-- High-Resolution Trace Matrix Architecture Graphic -->
-      <div class="mb-10 rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-cyan-500/10">
+      <!-- High-Resolution Trace Matrix Architecture Graphic with Laser Scanner -->
+      <div class="mb-10 rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-cyan-500/10 relative group">
         <img src="assets/smarteye-trace-matrix.jpg" alt="SmartEye eQMS Interactive Traceability Node Graph" class="w-full h-auto object-cover" />
+        <div class="laser-scanner-line"></div>
       </div>
 
       <!-- Trace Matrix Board -->

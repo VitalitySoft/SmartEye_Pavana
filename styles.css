@@ -197,3 +197,118 @@ body {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
+
+/* HIGH-TECH MOTION SCANNER & HUD */
+@keyframes laser-scan {
+  0% {
+    top: -5%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
+    top: 105%;
+    opacity: 0;
+  }
+}
+
+.laser-scanner-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #22D3EE 20%, #34D399 50%, #22D3EE 80%, transparent);
+  box-shadow: 0 0 20px 4px rgba(34, 211, 238, 0.8), 0 0 40px 8px rgba(52, 211, 153, 0.5);
+  animation: laser-scan 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+  z-index: 15;
+}
+
+/* Motion Hotspots with Pulsing Rings */
+.motion-hotspot {
+  position: absolute;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.hotspot-dot {
+  width: 14px;
+  height: 14px;
+  background: #22D3EE;
+  border-radius: 9999px;
+  position: relative;
+  box-shadow: 0 0 12px 2px rgba(34, 211, 238, 0.9);
+}
+
+.hotspot-ping {
+  position: absolute;
+  inset: -6px;
+  border-radius: 9999px;
+  border: 2px solid #22D3EE;
+  animation: hotspot-ripple 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+@keyframes hotspot-ripple {
+  0% {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+/* Tooltip Popup on Hover */
+.hotspot-tooltip {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  background: rgba(3, 7, 18, 0.92);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 8px 14px;
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.7), 0 0 15px rgba(6, 182, 212, 0.3);
+  z-index: 30;
+}
+
+.motion-hotspot:hover .hotspot-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Trace Pipeline Flow Lines */
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+
+.animated-flow-line {
+  stroke-dasharray: 8, 8;
+  animation: dash-flow 1.6s linear infinite;
+}
+
+/* Continuous Video Frame Glow */
+.motion-video-frame {
+  position: relative;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(6, 182, 212, 0.15);
+}
+
+.motion-video-frame:hover {
+  border-color: rgba(34, 211, 238, 0.4);
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.9), 0 0 45px rgba(6, 182, 212, 0.3);
+}
